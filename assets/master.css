@@ -1,0 +1,31 @@
+*{
+    font-family: "Gill Sans", sans-serif;
+    font-weight: bold;
+}
+
+
+
+.table-responsive{
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.table-responsive  thead{
+    border-bottom: 2px solid black;
+}
+
+.table thead th {
+    background: #2a20b0;
+    border-bottom: black;
+    color: #2FB91E;;
+}
+
+.table>tbody>tr {
+    color: #ffffff;
+    background: #2a35b0;
+}
+
+.table>tbody>tr:hover{
+    background: linear-gradient(135deg, #120038 20%, #2a35b0 80%);
+    color: #ffffff;
+}

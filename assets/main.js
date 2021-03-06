@@ -15,6 +15,7 @@ var people = [
 ["MARCO","SEFEROVIC"],
 ["FRANCESCO","VIARENGO"],
 ["ALESSANDRO","GALLO"],
+["GIOVANNI","CONTI"],
 ["GIOVANNI","CONTI"]
 ];
 
@@ -22,18 +23,22 @@ var people = [
 // INPUT UTENTE
 lastnameInput = prompt("Inserisci il cognome : ").toUpperCase();
 nameInput = prompt("Inserisci il nome : ").toUpperCase();
-people.push([nameInput,lastnameInput]);
 
+// OPERAZIONI SULLA LISTA
+people.push([nameInput,lastnameInput]);
+peopleSorted = people.slice().sort();
+
+
+// ULTIMA LUNGHEZZA LISTA
+var ListLength = peopleSorted.length;
 
 // ORDINAMENTO LISTA
-for (var i = people.length - 1; i >= 0 ; i--) {
+for (var i = ListLength - 1; i > 0 ; i--) {
     for (var j = i - 1 ; j >= 0; j--) {
-        if (people[i][IndexCognomi] <= people[j][IndexCognomi]){
-            indiceMinimo = j;
-            console.log(people[j][IndexCognomi]);
-            var temp = people[i];
-            people[i] = people[indiceMinimo];
-            people[indiceMinimo] = temp;
+        if (peopleSorted[i][IndexCognomi] <= peopleSorted[j][IndexCognomi]){
+            var temp = peopleSorted[i];
+            peopleSorted[i] = peopleSorted[j];
+            peopleSorted[j] = temp;
         }
     }
 }
@@ -42,7 +47,7 @@ for (var i = people.length - 1; i >= 0 ; i--) {
 // Presentazione Header pagina
 var presentationItem = document.getElementById('presentation');
 presentationText = "<h1>Lista Persone</h1>" +
-"<p<strong>Persona aggiunta</strong></p>";
+"<p class =\" mb-0\"><strong>Persona aggiunta</strong></p>";
 
 presentationItem.innerHTML = presentationText;
 
@@ -50,7 +55,23 @@ presentationItem.innerHTML = presentationText;
 /* Inserimento dell' input
 nel div "id = presentation"
 */
-presentationItem.innerHTML += "<p>" + lastnameInput + " " + nameInput +"</p>";
+presentationItem.innerHTML += "<p  class =\" text-success\">" + lastnameInput + " " + nameInput +"</p>";
 
 
-// to be continued
+
+
+// Creazione row tabelle + cell --- Dati persona;
+for (var i = 0; i < ListLength; i++) {
+
+    document.getElementById('tabellaPersone').innerHTML +=
+    "<tr>";
+
+    if (peopleSorted[i][IndexCognomi] == lastnameInput) {
+        document.getElementById('tabellaPersone').innerHTML += "<td class = \" bg-success\">" + peopleSorted[i][IndexCognomi] + "</td><td class =\" bg-success\"> " + peopleSorted[i][IndexNomi] + "</td>";
+    }else {
+        document.getElementById('tabellaPersone').innerHTML += "<td>" + peopleSorted[i][IndexCognomi] + "</td><td> " + peopleSorted[i][IndexNomi] + "</td>";
+    }
+
+    document.getElementById('tabellaPersone').innerHTML +=
+    "</tr>";
+}
